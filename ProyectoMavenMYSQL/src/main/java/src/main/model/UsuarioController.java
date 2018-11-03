@@ -8,6 +8,7 @@ import javax.persistence.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.web.bind.annotation.CrossOrigin;//IMPORTANTE necesario para aceptar requests locales
 //import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "http://localhost:8084")//esto significa que se aceptan peticiones de esta direccion
 @RestController    // This means that this class is a (Rest)Controller
 @RequestMapping(path = "/usuarios") // This means URL's start with /usuarios (after Application path)
 //creo que tambien puede ser @RequestMapping( "/usuarios"), osea, sin el path=
