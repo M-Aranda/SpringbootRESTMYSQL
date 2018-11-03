@@ -1,9 +1,12 @@
-
 package src.main.java;
 
 //import src.main.java.Usuario;
 //import src.main.java.UsuarioRepository;
+import java.util.Optional;
+import javax.persistence.Version;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 //import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +27,7 @@ public class UsuarioController {
     @GetMapping(path = "/add") // Map ONLY GET Requests // seria http://localhost:8080/usuarios/add?id=null&nombre=algunombre&correo=alungmail@someemailprovider.com
     public @ResponseBody
     String addNewUser(@RequestParam String nombre,
-             @RequestParam String correo) {
+            @RequestParam String correo) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
@@ -41,14 +44,33 @@ public class UsuarioController {
     Iterable<Usuario> getAllUsers() {
         return usuarioRepository.findAll();// This returns a JSON or XML with the users
     }
-    
+
     //este metodo es el borrar
     @GetMapping(path = "/delete")//seria http://localhost:8080/usuarios/delete?id=1
     public @ResponseBody
-    void delete(@RequestParam int id){
+    void delete(@RequestParam int id) {
         Usuario u = new Usuario();
         u.setId(id);
-        
+
         usuarioRepository.delete(u);
+    }
+    
+  
+@Modifying
+@Query("UPDATE usuario u set u.nombre = ?1, u.correo = ?2   where u.id = ?3")
+void setUserInfoById(String nombre, String correo, Integer id){
+    
+}
+    @Version
+    @GetMapping(path = "/update") //seria http://localhost:8080/usuarios/update?id=algo&nombre=jajaja&correo=asdasds@someemailprovider.com
+    public @ResponseBody
+    void update(@RequestParam int id, @RequestParam String nombre, @RequestParam String correo) {//se usa save() para esto
+        Optional<Usuario> optionalEntity = usuarioRepository.findById(id);
+        Usuario u = optionalEntity.get();
+        u.setNombre(nombre);
+        u.setCorreo(correo);     
+        usuarioRepository.save(u);
+        
+
     }
 }
