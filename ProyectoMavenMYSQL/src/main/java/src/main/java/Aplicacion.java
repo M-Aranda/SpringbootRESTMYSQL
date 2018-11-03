@@ -7,12 +7,17 @@ package src.main.java;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
 
 
 
 @SpringBootApplication
-//@ComponentScan(basePackageClasses = UsuarioController.class)//se supone que adentro va el paquete en el que se encuentra el componente a escanear
+@ComponentScan({"src.main.model"})//Escanear componentes en este paquete
+@EntityScan("src.main.model")//escanear entidades en este paquete
+@EnableJpaRepositories("src.main.model")//habilitar repositorios jpa viniendo de este paquete
 public class Aplicacion {
 
     public static void main(String[] args) {

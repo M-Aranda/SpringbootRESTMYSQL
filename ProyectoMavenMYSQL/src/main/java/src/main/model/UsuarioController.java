@@ -1,7 +1,8 @@
-package src.main.java;
+package src.main.model;
 
 //import src.main.java.Usuario;
 //import src.main.java.UsuarioRepository;
+import src.main.model.UsuarioRepository;
 import java.util.Optional;
 import javax.persistence.Version;
 import org.springframework.beans.factory.annotation.Autowired;

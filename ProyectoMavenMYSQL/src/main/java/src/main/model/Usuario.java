@@ -1,5 +1,5 @@
 
-package src.main.java;
+package src.main.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

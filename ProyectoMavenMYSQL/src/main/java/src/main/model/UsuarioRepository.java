@@ -1,6 +1,6 @@
 
 
-package src.main.java;
+package src.main.model;
 
 import org.springframework.data.repository.CrudRepository;
 

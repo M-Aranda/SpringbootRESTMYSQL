@@ -1,4 +1,4 @@
-src\main\java\Usuario.class
-src\main\java\UsuarioRepository.class
-src\main\java\UsuarioController.class
+src\main\model\UsuarioRepository.class
 src\main\java\Aplicacion.class
+src\main\model\UsuarioController.class
+src\main\model\Usuario.class
